@@ -1,0 +1,10 @@
+.formWrapper{
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+    
+}
+
+h2{
+    text-align: center;
+}
