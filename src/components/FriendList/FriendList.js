@@ -8,7 +8,7 @@ import {
 	Popconfirm,
 	message,
 } from "antd";
-import { removeFriend, addDebt } from "../../services/db.service";
+import { removeFriend } from "../../services/db.service";
 import {
 	DeleteOutlined,
 	PlusCircleOutlined,
@@ -17,6 +17,7 @@ import {
 
 import "./FriendList.css";
 import DebtModal from "../DebtModal/DebtModal";
+import DebtList from "../DebtList/DebtList";
 
 function FriendList(props) {
 	const columns = [
@@ -42,6 +43,13 @@ function FriendList(props) {
 				<Space size="middle">
 					<Tooltip title={"List " + record.friend.name + "'s Debts"}>
 						<Button
+							onClick={() =>
+								props.setListDebtState({
+									okDisabled: true,
+									visible: true,
+									friend: record.friend,
+								})
+							}
 							shape="circle"
 							icon={<UnorderedListOutlined />}
 						/>
@@ -49,7 +57,7 @@ function FriendList(props) {
 					<Tooltip title={"Add Debt to " + record.friend.name}>
 						<Button
 							onClick={() =>
-								props.setModalState({
+								props.setDebtModalState({
 									okDisabled: true,
 									visible: true,
 									friend: record.friend,
@@ -99,14 +107,14 @@ function FriendList(props) {
 		props.dispatch({
 			currPage: page,
 			pageSize: pageSize,
-			total: props.firendListState.total,
-			items: props.firendListState.items,
+			total: props.friendListState.total,
+			items: props.friendListState.items,
 		});
 	}
 
 	useEffect(props.reloadItems, [
-		props.firendListState.currPage,
-		props.firendListState.pageSize,
+		props.friendListState.currPage,
+		props.friendListState.pageSize,
 	]);
 
 	return (
@@ -114,23 +122,31 @@ function FriendList(props) {
 			<Table
 				pagination={false}
 				columns={columns}
-				dataSource={props.firendListState.items}
+				dataSource={props.friendListState.items}
 			/>
 			<Pagination
 				size="small"
-				total={props.firendListState.total}
+				total={props.friendListState.total}
 				defaultCurrent={props.initialState.currPage}
-				current={props.firendListState.currPage}
-				pageSize={props.firendListState.pageSize}
+				current={props.friendListState.currPage}
+				pageSize={props.friendListState.pageSize}
 				showTotal={showTotal}
 				onChange={changePage}
 				onShowSizeChange={changePage}
 				showSizeChanger
 			/>
 			<DebtModal
-				setModalState={props.setModalState}
-				modalState={props.modalState}
+				setModalState={props.setDebtModalState}
+				modalState={props.debtModalState}
+				reloadItems={props.reloadItems}
+				currency={props.currency}
 			></DebtModal>
+			<DebtList
+				setModalState={props.setListDebtState}
+				modalState={props.listDebtState}
+				reloadItems={props.reloadItems}
+				currency={props.currency}
+			></DebtList>
 		</>
 	);
 }

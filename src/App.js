@@ -23,25 +23,15 @@ const initialState = {
 	items: [],
 };
 
-let currency = "BRL";
-
-const { antdHeader, Footer, Sider, Content } = Layout;
-
 function App() {
-	const [firendListState, dispatch] = useReducer(reducer, initialState);
-	const [modalState, setModalState] = useState({
-		visible: false,
-		friend: undefined,
-		okDisabled: true,
-	});
 	function reloadItems() {
 		startDB(() => {
 			getFriends(
 				{
-					limit: firendListState.pageSize,
+					limit: friendListState.pageSize,
 					offset:
-						firendListState.pageSize *
-						(firendListState.currPage - 1),
+						friendListState.pageSize *
+						(friendListState.currPage - 1),
 				},
 				(response) => {
 					const friendList = [];
@@ -57,10 +47,10 @@ function App() {
 													(d) => d.createdAt
 												)
 											),
-											"HH:mm dd/MM/yyyy"
+											"Pp"
 									  )
 									: "-",
-							total: Intl.NumberFormat("pt-Br", {
+							total: Intl.NumberFormat(navigator.language, {
 								style: "currency",
 								currency: currency,
 							}).format(
@@ -85,28 +75,48 @@ function App() {
 	function reloadFriendList() {
 		reloadItems();
 	}
+	const [friendListState, dispatch] = useReducer(reducer, initialState);
+	const [debtModalState, setDebtModalState] = useState({
+		visible: false,
+		friend: undefined,
+		okDisabled: true,
+	});
+	const [listDebtState, setListDebtState] = useState({
+		visible: false,
+		friend: undefined,
+		okDisabled: true,
+	});
+	const [currency, setCurrency] = useState("BRL");
 
 	return (
 		<Layout className="layout">
 			<Header></Header>
-			<Content className="content">
+			<Layout.Content className="content">
 				<div className="content-wrapper">
 					<FriendForm
 						reloadFriendList={reloadFriendList}
 					></FriendForm>
 					<FriendList
-						firendListState={firendListState}
+						friendListState={friendListState}
 						dispatch={dispatch}
 						initialState={initialState}
 						reloadItems={reloadItems}
-						modalState={modalState}
-						setModalState={setModalState}
+						debtModalState={debtModalState}
+						setDebtModalState={setDebtModalState}
+						listDebtState={listDebtState}
+						setListDebtState={setListDebtState}
+						currency={currency}
 					></FriendList>
 				</div>
-			</Content>
-			<Footer className="footer">
-				<span>Made with ReactJs and Ant Design by Márcio Medeiros</span>
-			</Footer>
+			</Layout.Content>
+			<Layout.Footer className="footer">
+				<div>Made with ReactJs and Ant Design by Márcio Medeiros</div>
+				<div>
+					<a href="https://github.com/MarcioMed07/Friend-Debt">
+						This project is open source under the MIT license.
+					</a>
+				</div>
+			</Layout.Footer>
 		</Layout>
 	);
 }

@@ -1,21 +1,25 @@
-import React, { useState, useReducer } from "react";
-import { Modal, Row, Col, Input, Switch, message } from "antd";
+import React, { useState, useReducer, useEffect } from "react";
+import { Modal, Row, Col, Input, Switch, message, DatePicker } from "antd";
 import { addDebt } from "../../services/db.service";
-import Form from "antd/lib/form/Form";
 
 function DebtModal(props) {
 	function handleOk(e) {
-		setValueState("0,00");
 		props.setModalState({
 			confirmLoading: true,
 			visible: true,
 			friend: props.modalState.friend,
 			cancelDisabled: true,
 		});
+		createDebt(
+			props.modalState.friend.id,
+			parse(formState.value),
+			formState.description,
+			formState.switch ? new Date() : formState.date
+		);
 	}
 
 	function handleCancel(e) {
-		setValueState("0,00");
+		dispatchForm(initialValue);
 		props.setModalState({
 			visible: false,
 			friend: props.modalState.friend,
@@ -25,7 +29,7 @@ function DebtModal(props) {
 	function createDebt(friendId, value, description, date) {
 		let newDebt = {
 			description: description,
-			value: parse(value),
+			value: typeof value === "string" ? parse(value) : value,
 			friendId: friendId,
 			createdAt: date,
 		};
@@ -38,6 +42,7 @@ function DebtModal(props) {
 					visible: false,
 					friend: props.modalState.friend,
 				});
+				dispatchForm(initialValue);
 				message.success("Debt created");
 			},
 			(error) => {
@@ -53,7 +58,25 @@ function DebtModal(props) {
 		);
 	}
 
-	function onSwitchChange(e) {}
+	function onSwitchChange(e) {
+		dispatchForm({
+			switch: e,
+		});
+	}
+
+	function onDateChange(e) {
+		dispatchForm({
+			date: e.toDate(),
+		});
+	}
+
+	function onDescriptionChange(e) {
+		let { value } = e.target;
+
+		dispatchForm({
+			description: value,
+		});
+	}
 
 	function onValueChange(e) {
 		let { value } = e.target;
@@ -76,31 +99,51 @@ function DebtModal(props) {
 					friend: props.modalState.friend,
 				});
 			}
-			setValueState(
-				Intl.NumberFormat("pt-Br", {
+			dispatchForm({
+				value: Intl.NumberFormat(navigator.language, {
 					minimumFractionDigits: 2,
 					maximumFractionDigits: 2,
-				}).format(value)
-			);
+				}).format(value),
+			});
 		}
 	}
 	function reducerForm(state, newState) {
-		if(newState.value){
-			state.value = newState.value
+		if (newState.value !== undefined) {
+			state.value = newState.value;
 		}
-		if(newState.description){
-			state.description = newState.description
+		if (newState.description !== undefined) {
+			state.description = newState.description;
 		}
-		if(newState.description){
-			state.description = newState.description
+		if (newState.date !== undefined) {
+			state.date = newState.date;
 		}
+		if (newState.switch !== undefined) {
+			state.switch = newState.switch;
+			if (state.switch) {
+				state.dateForm = <></>;
+			} else {
+				state.dateForm = (
+					<Col span={12}>
+						<Row>Date</Row>
+						<DatePicker showTime onChange={onDateChange} />
+					</Col>
+				);
+			}
+		}
+		console.log(parse(state.value));
+		return { ...state };
 	}
 	const initialValue = {
-		value: 0.0,
+		value: "0.00",
 		description: "",
 		date: new Date(),
+		switch: true,
+		dateForm: <></>,
 	};
-	const [valueState, setValueState] = useState("0,00");
+	const [, forceUpdate] = useState();
+	useEffect(() => {
+		forceUpdate({});
+	}, []);
 	const [formState, dispatchForm] = useReducer(reducerForm, initialValue);
 	return (
 		<>
@@ -123,7 +166,7 @@ function DebtModal(props) {
 					<Col span={12}>
 						<Row>Value</Row>
 						<Input
-							value={valueState}
+							value={formState.value}
 							onChange={onValueChange}
 							prefix="$"
 							maxLength={12}
@@ -131,19 +174,19 @@ function DebtModal(props) {
 					</Col>
 					<Col span={12}>
 						<Row>Description</Row>
-						<Input.TextArea />
+						<Input.TextArea
+							value={formState.description}
+							onChange={onDescriptionChange}
+						/>
 					</Col>
 				</Row>
 				<Row gutter={[16, 16]}>
 					<Col span={12}>
 						<Row>Current Date</Row>
-						<Switch defaultChecked onChange={onSwitchChange} />
+						<Switch checked={formState.switch} onChange={onSwitchChange} />
 					</Col>
 
-					<Col span={12}>
-						<Row>Date</Row>
-						<Input />
-					</Col>
+					{formState.dateForm}
 				</Row>
 			</Modal>
 		</>

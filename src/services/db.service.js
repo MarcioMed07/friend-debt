@@ -1,7 +1,6 @@
 let db;
 let dbName = "friendDebtDB";
 let friendStoreName = "friend";
-let debtStoreName = "debt";
 
 export default function startDB(callback) {
 	if (db) {
@@ -79,6 +78,23 @@ export function removeFriend(friendId, success, error) {
 	}
 }
 
+export function getFriend(friendId, success, error) {
+	if (!db) {
+		console.error("db not found");
+		return;
+	} else {
+		const transaction = db.transaction([friendStoreName], "readwrite");
+		const objectStore = transaction.objectStore(friendStoreName);
+		const request = objectStore.get(friendId);
+		request.onsuccess  = (event) => {
+			success(request.result);
+		};
+		request.onerror = (event) => {
+			error(event);
+		};
+	}
+}
+
 export function getFriends(paginator, success, error) {
 	if (!db) {
 		console.error("db not found");
@@ -143,6 +159,7 @@ export function addDebt(friendId, debt, success, error) {
 				Object.values(friend.debts).length > 0
 					? Math.max(...Object.keys(friend.debts)) + 1
 					: 0;
+			debt["id"] = newIndex;
 			friend.debts[newIndex] = debt;
 			const newRequest = objectStore.put(friend);
 			newRequest.onsuccess = (event) => {
@@ -152,19 +169,19 @@ export function addDebt(friendId, debt, success, error) {
 	}
 }
 
-export function removeDebt(debtId, success, error) {
+export function removeDebt(friendId, debtId, success, error) {
 	if (!db) {
 		console.error("db not found");
 		return;
 	} else {
-		const transaction = db.transaction([debtStoreName], "readwrite");
-		const objectStore = transaction.objectStore(debtStoreName);
-		objectStore.delete(debtId);
-		transaction.oncomplete = (event) => {
-			success(event);
-		};
-		transaction.onerror = (event) => {
-			error(event);
-		};
+		getFriend(friendId, (friend) => {
+			delete friend.debts[debtId]
+			const transaction = db.transaction([friendStoreName], "readwrite");
+			const objectStore = transaction.objectStore(friendStoreName);
+			const request = objectStore.put(friend)
+			request.onsuccess = (event) => {
+				success(friend)
+			}
+		});
 	}
 }
