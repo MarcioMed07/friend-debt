@@ -1,6 +1,7 @@
 # Friend Debt
 
 Friend Debt is a tool to help you remember how much your friends owe you. It was created with [ReactJS](https://reactjs.org/) and utilizes the [Ant Design](https://ant.design/) design system.
+Live version avaiable [here](https://marciomed07.github.io/friend-debt/).
 
 ## Installation
 
