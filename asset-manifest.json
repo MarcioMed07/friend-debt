@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/Friend-Debt/static/css/main.a5e14f19.chunk.css",
-    "main.js": "/Friend-Debt/static/js/main.bd090ebd.chunk.js",
-    "main.js.map": "/Friend-Debt/static/js/main.bd090ebd.chunk.js.map",
-    "runtime-main.js": "/Friend-Debt/static/js/runtime-main.ae1eccd7.js",
-    "runtime-main.js.map": "/Friend-Debt/static/js/runtime-main.ae1eccd7.js.map",
-    "static/css/2.d4e7eff5.chunk.css": "/Friend-Debt/static/css/2.d4e7eff5.chunk.css",
-    "static/js/2.55490022.chunk.js": "/Friend-Debt/static/js/2.55490022.chunk.js",
-    "static/js/2.55490022.chunk.js.map": "/Friend-Debt/static/js/2.55490022.chunk.js.map",
-    "index.html": "/Friend-Debt/index.html",
-    "precache-manifest.0bc29b5abd4655de835047475da1c13f.js": "/Friend-Debt/precache-manifest.0bc29b5abd4655de835047475da1c13f.js",
-    "service-worker.js": "/Friend-Debt/service-worker.js",
-    "static/css/2.d4e7eff5.chunk.css.map": "/Friend-Debt/static/css/2.d4e7eff5.chunk.css.map",
-    "static/css/main.a5e14f19.chunk.css.map": "/Friend-Debt/static/css/main.a5e14f19.chunk.css.map",
-    "static/js/2.55490022.chunk.js.LICENSE.txt": "/Friend-Debt/static/js/2.55490022.chunk.js.LICENSE.txt"
+    "main.css": "/friend-debt/static/css/main.a5e14f19.chunk.css",
+    "main.js": "/friend-debt/static/js/main.47320bcd.chunk.js",
+    "main.js.map": "/friend-debt/static/js/main.47320bcd.chunk.js.map",
+    "runtime-main.js": "/friend-debt/static/js/runtime-main.b32dcf66.js",
+    "runtime-main.js.map": "/friend-debt/static/js/runtime-main.b32dcf66.js.map",
+    "static/css/2.d4e7eff5.chunk.css": "/friend-debt/static/css/2.d4e7eff5.chunk.css",
+    "static/js/2.c12a26b7.chunk.js": "/friend-debt/static/js/2.c12a26b7.chunk.js",
+    "static/js/2.c12a26b7.chunk.js.map": "/friend-debt/static/js/2.c12a26b7.chunk.js.map",
+    "index.html": "/friend-debt/index.html",
+    "precache-manifest.c8ec755cde491da991bba481941c09d5.js": "/friend-debt/precache-manifest.c8ec755cde491da991bba481941c09d5.js",
+    "service-worker.js": "/friend-debt/service-worker.js",
+    "static/css/2.d4e7eff5.chunk.css.map": "/friend-debt/static/css/2.d4e7eff5.chunk.css.map",
+    "static/css/main.a5e14f19.chunk.css.map": "/friend-debt/static/css/main.a5e14f19.chunk.css.map",
+    "static/js/2.c12a26b7.chunk.js.LICENSE.txt": "/friend-debt/static/js/2.c12a26b7.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.ae1eccd7.js",
+    "static/js/runtime-main.b32dcf66.js",
     "static/css/2.d4e7eff5.chunk.css",
-    "static/js/2.55490022.chunk.js",
+    "static/js/2.c12a26b7.chunk.js",
     "static/css/main.a5e14f19.chunk.css",
-    "static/js/main.bd090ebd.chunk.js"
+    "static/js/main.47320bcd.chunk.js"
   ]
 }
