@@ -86,7 +86,7 @@ export function getFriend(friendId, success, error) {
 		const transaction = db.transaction([friendStoreName], "readwrite");
 		const objectStore = transaction.objectStore(friendStoreName);
 		const request = objectStore.get(friendId);
-		request.onsuccess  = (event) => {
+		request.onsuccess = (event) => {
 			success(request.result);
 		};
 		request.onerror = (event) => {
@@ -175,13 +175,13 @@ export function removeDebt(friendId, debtId, success, error) {
 		return;
 	} else {
 		getFriend(friendId, (friend) => {
-			delete friend.debts[debtId]
+			delete friend.debts[debtId];
 			const transaction = db.transaction([friendStoreName], "readwrite");
 			const objectStore = transaction.objectStore(friendStoreName);
-			const request = objectStore.put(friend)
+			const request = objectStore.put(friend);
 			request.onsuccess = (event) => {
-				success(friend)
-			}
+				success(friend);
+			};
 		});
 	}
 }

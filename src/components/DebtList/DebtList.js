@@ -37,8 +37,7 @@ function DebtList(props) {
 			title: "Date",
 			dataIndex: "createdAt",
 			key: "createdAt",
-			render: (text, record) =>
-				format(record.createdAt, "Pp"),
+			render: (text, record) => format(record.createdAt, "Pp"),
 		},
 		{
 			title: "Delete",

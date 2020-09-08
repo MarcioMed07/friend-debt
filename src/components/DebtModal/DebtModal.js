@@ -183,7 +183,10 @@ function DebtModal(props) {
 				<Row gutter={[16, 16]}>
 					<Col span={12}>
 						<Row>Current Date</Row>
-						<Switch checked={formState.switch} onChange={onSwitchChange} />
+						<Switch
+							checked={formState.switch}
+							onChange={onSwitchChange}
+						/>
 					</Col>
 
 					{formState.dateForm}

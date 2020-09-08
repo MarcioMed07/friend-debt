@@ -4,8 +4,6 @@ import { addFriend } from "../../services/db.service";
 import { Form, Input, Button } from "antd";
 
 function FriendForm(props) {
-
-
 	function onSubmit(value) {
 		console.log(value.friendName);
 		let friend = {
@@ -35,7 +33,7 @@ function FriendForm(props) {
 
 				<Form form={form} onFinish={onSubmit} layout="inline">
 					<Form.Item label="Friend Name" name="friendName" required>
-						<Input />
+						<Input maxLength={70} />
 					</Form.Item>
 
 					<Form.Item shouldUpdate>

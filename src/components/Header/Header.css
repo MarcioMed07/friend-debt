@@ -4,13 +4,13 @@
 	display: flex;
 	justify-content: center;
 	padding: 1em;
-	
+
 	background-color: #222;
 	color: #fff;
 }
 
-.title h1{
-  color: #fff;
-  text-align: center;
-  font-size: xx-large;
+.title h1 {
+	color: #fff;
+	text-align: center;
+	font-size: xx-large;
 }
