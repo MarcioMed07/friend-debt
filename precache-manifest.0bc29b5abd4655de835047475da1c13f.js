@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fdd31736a85f57e6936aefba8992d609",
+    "revision": "6e128a9ef014d93d9ceea954e1f07793",
     "url": "/Friend-Debt/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Friend-Debt/static/css/2.d4e7eff5.chunk.css"
   },
   {
-    "revision": "4da4b6959816ac1e1409",
-    "url": "/Friend-Debt/static/css/main.b67b7bfb.chunk.css"
+    "revision": "bc31ed33e077f5eaec76",
+    "url": "/Friend-Debt/static/css/main.a5e14f19.chunk.css"
   },
   {
     "revision": "523c22e39ca292d14a56",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Friend-Debt/static/js/2.55490022.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "4da4b6959816ac1e1409",
-    "url": "/Friend-Debt/static/js/main.f5ee2c5a.chunk.js"
+    "revision": "bc31ed33e077f5eaec76",
+    "url": "/Friend-Debt/static/js/main.bd090ebd.chunk.js"
   },
   {
     "revision": "dcb169d22e7fd3cbf5ef",

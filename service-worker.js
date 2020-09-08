@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Friend-Debt/precache-manifest.437bf8e448e814a4e7cfe439619c461b.js"
+  "/Friend-Debt/precache-manifest.0bc29b5abd4655de835047475da1c13f.js"
 );
 
 self.addEventListener('message', (event) => {
