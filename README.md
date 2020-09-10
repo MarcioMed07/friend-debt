@@ -5,9 +5,11 @@ Live version avaiable [here](https://marciomed07.github.io/friend-debt/).
 
 ## Installation
 
-Use the package manager in the project directory [npm](https://www.npmjs.com/) to install.
+Clone the repository and install the dependencies with [npm](https://www.npmjs.com/).
 
 ```bash
+git clone https://github.com/MarcioMed07/friend-debt.git
+cd friend-debt
 npm install
 ```
 
@@ -19,7 +21,7 @@ In the project directory, run:
 npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000](http://localhost:3000/friend-debt) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
